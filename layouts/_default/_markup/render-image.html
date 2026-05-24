@@ -1,0 +1,13 @@
+{{ $url := .Destination }}
+{{ $isRemote := or (in $url "http://") (in $url "https://") }}
+
+{{ if not $isRemote }}
+    {{ if not (hasPrefix $url "/") }}
+        {{ $url = (path.Join $.Page.RelPermalink $url) | safeURL }}
+    {{ end }}
+{{ end }}
+
+<img src="{{ $url }}" 
+     {{- with .PlainText }} alt="{{ . }}"{{ end -}}
+     {{- with .Title }} title="{{ . }}"{{ end -}}
+>

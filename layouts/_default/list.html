@@ -17,7 +17,14 @@
                 {{ if and (not (.Site.Params.listPages.disableFeaturedImage | default false)) (.Params.image) }}
                 <div class="card-header">
                     <a href="{{ .RelPermalink }}">
-                        <img src="{{ .Params.image }}" class="card-img-top" alt="{{ .Title }}">
+                        {{ $url := .Params.image }}
+                        {{ $isRemote := or (in $url "http://") (in $url "https://") }}
+                        {{ if not $isRemote }}
+                            {{ if not (hasPrefix $url "/") }}
+                                {{ $url = (path.Join .RelPermalink .Params.image) | safeURL }}
+                            {{ end }}
+                        {{ end }}
+                        <img src="{{ $url }}" class="card-img-top" alt="{{ .Title }}">
                     </a>
                 </div>
                 {{ end }}

@@ -1,19 +1,19 @@
-{{ $link := .Destination }}
-{{ $isRemote := or (strings.HasPrefix $link "http://") (strings.HasPrefix $link "https://") }}
-{{ $isAbsolute := strings.HasPrefix $link "/" }}
+{{- $link := .Destination -}}
+{{- $isRemote := or (strings.HasPrefix $link "http://") (strings.HasPrefix $link "https://") -}}
+{{- $isAbsolute := strings.HasPrefix $link "/" -}}
 
-{{ if not (or $isRemote $isAbsolute) }}
-  {{ with $.Page.Resources.GetMatch $link }}
-    {{ $link = .RelPermalink }}
-  {{ else }}
-    {{ with resources.Get $link }}
-      {{ $link = .RelPermalink }}
-    {{ end }}
-  {{ end }}
-{{ end }}
+{{- if not (or $isRemote $isAbsolute) -}}
+  {{- with $.Page.Resources.GetMatch $link -}}
+    {{- $link = .RelPermalink -}}
+  {{- else -}}
+    {{- with resources.Get $link -}}
+      {{- $link = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 
 <a href="{{ $link | safeURL }}"
-   {{ if $isRemote }} target="_blank" rel="noopener noreferrer"{{ end }}
-   {{ with .Title }} title="{{ . }}"{{ end }}>
-  {{- .Text | safeHTML }}
+   {{- if $isRemote -}} target="_blank" rel="noopener noreferrer"{{ end -}}
+   {{- with .Title }} title="{{ . }}"{{ end -}}>
+  {{ .Text | safeHTML }}
 </a>

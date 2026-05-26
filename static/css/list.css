@@ -20,7 +20,7 @@
 }
 
 #list-page .card-text * {
-    background-color: var(--secondary-color) !important;	
+    /* background-color: var(--secondary-color) !important;	 */
 }
 
 #list-page .card-text img {
@@ -79,4 +79,11 @@
     border-color: var(--primary-color);
     background-color: var(--primary-color) !important;
     color: var(--secondary-color) !important;
+}
+
+/* code */
+
+#list-page .highlight pre {
+	border-radius: 0.7em;
+    padding: 10px;
 }

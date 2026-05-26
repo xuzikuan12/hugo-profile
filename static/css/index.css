@@ -138,6 +138,11 @@ header .navbar.animate {
     width: 1em;
 }
 
+#hero a.btn.social-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 #hero a.btn.social-icon:hover {
     opacity: 0.8;
 }

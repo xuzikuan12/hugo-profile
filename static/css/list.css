@@ -20,7 +20,12 @@
 }
 
 #list-page .card-text * {
-    background-color: var(--secondary-color) !important;
+    background-color: var(--secondary-color) !important;	
+}
+
+#list-page .card-text img {
+    max-width: 100%;
+    height: auto;
 }
 
 #list-page .post-footer {
